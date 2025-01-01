@@ -53,7 +53,7 @@ This technologies used in creation of the bank portal are as follow :
   <img width="12" />
   <img src="https://skillicons.dev/icons?i=js" height="40" alt="javascript logo"  />
   <img width="12" />
-  <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fpydata.org%2Fproject%2Fmatplotlib%2F&psig=AOvVaw2BtDtIX_PjS1VkOuGYbLR3&ust=1735794590462000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCICbgvPg04oDFQAAAAAdAAAAABAO" height="40" alt="Matplotlib"/>
+  <img src="https://camo.githubusercontent.com/3eed28e026e4e0220f99e2f4c8a517fcb3a30a1b944c528efc9533ff7840435f/68747470733a2f2f6d6174706c6f746c69622e6f72672f5f7374617469632f6c6f676f322e737667" height="40" alt="Matplotlib"/>
 </div>
 
 ###
