@@ -37,10 +37,10 @@ This technologies used in creation of the bank portal are as follow :
 </div>
 <div align="left">
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" height="40" alt="django logo"  />
-</div>
-<div align="left">
   <img src="https://cdn.simpleicons.org/sqlite/003B57" height="40" alt="sqlite logo"  />
+
 </div>
+
 ### Prerequisites
 
 below is installation of python web framework django 
