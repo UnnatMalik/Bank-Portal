@@ -33,10 +33,14 @@ Below are following steps and prerequisites for setting up the Web portal locall
 
 This technologies used in creation of the bank portal are as follow : 
 
-- [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
-- [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
-- [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-- [Django ](https://www.djangoproject.com/start/overview/)
+<div align="right">
+</div>
+<div align="left">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" height="40" alt="django logo"  />
+</div>
+<div align="left">
+  <img src="https://cdn.simpleicons.org/sqlite/003B57" height="40" alt="sqlite logo"  />
+</div>
 ### Prerequisites
 
 below is installation of python web framework django 
