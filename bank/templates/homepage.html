@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CHD-BANK</title>
+    <link rel="icon" href="https://clipartcraft.com/images/bank-logo-icon-9.png" type="image/png">
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            background: #f4f4f4;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #4a90e2, #7b5dfa);
+            color: #fff;
+            padding: 20px 0;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header nav img {
+            height: 50px;
+            border-radius: 50%;
+        }
+
+        header nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        header nav ul li {
+            margin: 0 15px;
+        }
+
+        header nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        header nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 85vh;
+            background: linear-gradient(135deg, #4a90e2, #7b5dfa);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+            .hero::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-image: url('https://cdn-icons-png.flaticon.com/512/4324/4324181.png'); /* Updated Rupee symbol background */
+                background-size: 100px 100px; /* Adjust size of each symbol */
+                background-repeat: repeat; /* Repeat image multiple times */
+                opacity: 0.1;
+                z-index: 1;
+            }         
+
+        .hero h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero .btn {
+            background: #ffffff;
+            color: #4a90e2;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 18px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero .btn:hover {
+            background: #7b5dfa;
+            color: #fff;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 50px 0;
+            background: #fff;
+        }
+
+        .services h3 {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 40px;
+            color: #4a90e2;
+        }
+
+        .service-items {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .service-item {
+            background: linear-gradient(135deg, #f4f4f4, #e6e6e6);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 30%;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .service-item h4 {
+            margin-bottom: 15px;
+            font-size: 24px;
+            color: #4a90e2;
+        }
+
+        .service-item p {
+            font-size: 16px;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #4a90e2, #7b5dfa);
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        footer p {
+            margin: 0;
+        }
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #4a90e2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+
+        .loader .rupee {
+            font-size: 72px;
+            color: #ffffff;
+            animation: pulse 1.5s infinite;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.5) rotate(180deg);
+                opacity: 0.7;
+            }
+            100% {
+                transform: scale(1) rotate(360deg);
+                opacity: 1;
+            }
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="loader">
+            <div class="rupee">₹</div>
+        </div>
+        <div class="container">
+            <nav>
+                <img src="https://clipartcraft.com/images/bank-logo-icon-9.png" alt="logo">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="{% url 'support page' %}">Contact</a></li>
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url 'Dashboard' %}">Dashboard</a></li>
+                    {% else %}
+                    <li><a href="{% url 'login page' %}">Login</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h2>Welcome to CHD Banking</h2>
+            <p>Manage your accounts, make transfers, and track transactions with ease.</p>
+            {% if user.is_authenticated %}
+                <a href="{% url 'Dashboard' %}" class="btn">Dash-board</a>
+            {% else %}
+                <a href="{% url 'Sign-up' %}" class="btn">Get Started</a>
+            {% endif %}
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <div class="container">
+            <h3>Our Services</h3>
+            <div class="service-items">
+                <div class="service-item">
+                    <a href="{% url 'Dashboard' %}" style="text-decoration: none; color: inherit;">
+                    <h4>Account Management</h4>
+                    <p>Manage your checking, savings, and investment accounts.</p>
+                    </a>
+                </div>
+                <div class="service-item">
+                    <a href="{% url 'Transfers' %}" style="text-decoration: none; color: inherit;">
+                    <h4>Transfer Funds</h4>
+                    <p>Transfer money to other accounts securely.</p>
+                    </a>
+                </div>
+                <div class="service-item">
+                    <a href="{% url 'transaction page' %}" style="text-decoration: none; color: inherit;">
+                    <h4>View Transactions</h4>
+                    <p>Check your recent transactions at any time.</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 CHD Bank. All Rights Reserved.</p>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loader = document.querySelector('.loader');
+            setTimeout(function() {
+                loader.classList.add('hidden');
+            }, 2000);
+        });
+    </script>
+</body>
+</html>

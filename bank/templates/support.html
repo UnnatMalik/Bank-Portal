@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Support | CHD-BANK</title>
+    <link rel="icon" href="https://clipartcraft.com/images/bank-logo-icon-9.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<style>
+    ::-webkit-scrollbar {
+            width: 12px; 
+        }
+        ::-webkit-scrollbar-track {
+            background: #f4f4f4; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: navy; 
+            border-radius: 10px; 
+            border: 2px solid #f4f4f4; 
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: #000080; 
+        }
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        background-color: #f4f4f4;
+        color: #333;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: auto;
+        padding: 20px;
+    }
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 260px;
+        background-color: #003366;
+        color: #ffffff;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        z-index: 1000;
+        transition: transform 0.3s;
+        background: linear-gradient(135deg, #4a90e2, #7b5dfa);
+    }
+
+    .sidebar.hidden {
+        transform: translateX(-260px);
+    }
+
+    .sidebar a {
+        text-decoration: none;
+        color: #ffffff;
+        font-size: 18px;
+        padding: 10px 15px;
+        border-radius: 8px;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    .sidebar a:hover {
+        background-color: #00509e;
+    }
+
+    .sidebar .active {
+        background-color: #00509e;
+        font-weight: bold;
+    }
+
+    .sidebar.open ~ .sidebar-toggle {
+        visibility: hidden;
+        opacity: 0;
+        pointer-events: none;
+    }
+    
+    .sidebar-toggle {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        width: 40px;
+        height: 40px;
+        background-color:#ffffff;
+        color:#4a90e2;
+        border: none;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 1001;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, opacity 0.3s, visibility 0.3s;
+    }
+
+    .sidebar-toggle:hover {
+        background-color: #f0f0f0; /* Slightly darker on hover for interaction feedback */
+    }
+    
+    .sidebar-toggle.hidden {
+        opacity: 0;
+        visibility: hidden;
+    }
+    
+    .hamburger {
+        width: 25px;
+        height: 2px;
+        background-color:#4a90e2;
+        position: relative;
+        transition: all 0.3s ease-in-out;
+    }
+    
+    .hamburger::before,
+    .hamburger::after {
+        content: "";
+        width: 25px;
+        height: 2px;
+        background-color: #4a90e2;
+        position: absolute;
+        left: 0;
+        transition: all 0.3s ease-in-out;
+    }
+    
+    .hamburger::before {
+        top: -8px;
+    }
+    
+    .hamburger::after {
+        top: 8px;
+    }
+    
+    /* Animate the hamburger to a cross */
+    .sidebar.open .hamburger {
+        transform: rotate(45deg);
+    }
+    
+    .sidebar.open .hamburger::before {
+        transform: rotate(90deg);
+        top: 0;
+    }
+    
+    .sidebar.open .hamburger::after {
+        opacity: 0;
+    }
+
+    header {
+        background: linear-gradient(135deg, #4a90e2, #7b5dfa);
+        color: #fff;
+        text-align: center;
+        padding: 50px 0;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+        font-size: 48px;
+        margin-bottom: 10px;
+    }
+
+    header p {
+        font-size: 18px;
+    }
+
+    .faq-section,
+    .contact-section {
+        padding: 40px 0;
+        background-color: #fff;
+        margin-top: 20px;
+    }
+
+    .faq-section h2,
+    .contact-section h2 {
+        font-size: 32px;
+        margin-bottom: 20px;
+        text-align: center;
+        color: #4a90e2;
+    }
+
+    .faq {
+        margin-bottom: 20px;
+    }
+
+    .faq h4 {
+        font-size: 20px;
+        margin-bottom: 10px;
+        color: #4a90e2;
+    }
+
+    .faq p {
+        font-size: 16px;
+        line-height: 1.5;
+        color: #555;
+    }
+
+    .contact-section .support-form {
+        max-width: 600px;
+        margin: auto;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        font-size: 16px;
+        margin-bottom: 5px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    .btn {
+        background: linear-gradient(135deg, #4a90e2, #7b5dfa);
+        color: #fff;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 18px;
+        cursor: pointer;
+    }
+
+    .btn:hover {
+        background-color: #003366;
+    }
+
+    footer {
+        background: linear-gradient(135deg, #4a90e2, #7b5dfa);
+        color: #fff;
+        text-align: center;
+        padding: 20px 0;
+    }
+
+    footer p {
+        margin: 0;
+    }
+    .button-group {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+        gap: 20px;
+    }
+
+    .button-group a {
+        text-decoration: none;
+        background-color: #004080;
+        color: #fff;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+    }
+
+    .button-group a:hover {
+        background-color: #003366;
+    }
+    .loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #4a90e2; /* Changed to match your header color */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        transition: opacity 0.5s, visibility 0.5s;
+    }
+
+    .loader .rupee {
+        font-size: 72px; /* Increased size */
+        color: #ffffff; /* Changed to white for contrast */
+        animation: pulse 1.5s infinite;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Added glow effect */
+    }
+
+    @keyframes pulse {
+        0% {
+            transform: scale(1) rotate(0deg);
+            opacity: 1;
+        }
+        50% {
+            transform: scale(1.5) rotate(180deg);
+            opacity: 0.7;
+        }
+        100% {
+            transform: scale(1) rotate(360deg);
+            opacity: 1;
+        }
+    }
+
+    .loader::after {
+        position: absolute;
+        bottom: 20%;
+        font-size: 24px;
+        color: #ffffff;
+        animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+    }
+
+    .loader.hidden {
+        opacity: 0;
+        visibility: hidden;
+    }
+</style>
+<body>
+    <div class="loader">
+        <div class="rupee">₹</div>
+    </div>
+    <div class="sidebar hidden" id="sidebar">
+        <a href="{% url 'Homepage' %}">
+            <img src="https://clipartcraft.com/images/bank-logo-icon-9.png" alt="CHD-BANK Logo" style="height: 30px; margin-right: 10px;"> Home
+        </a>
+        <a href="{% url 'Dashboard' %}">Dashboard</a>
+        <a href="{% url 'User' %}">Profile</a>
+        <a href="{% url 'transaction page' %}">Transactions</a>
+        <a href="{% url 'support page' %}">Support</a>
+        <div class="button-group">
+            <button id="logoutButton" style="margin-top: 300px; padding: 10px; border: none; border-radius: 5px; background-color:rgb(231, 77, 60); color: white; cursor: pointer;" onclick="location.href='{% url 'Logout' %}'">
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
+            
+            <button id="settingsButton" style="margin-top: 300px; padding: 10px; border: none; border-radius: 5px; background-color:rgb(74, 145, 226); color: white; cursor: pointer;">
+                <i class="fas fa-cogs"></i>  <!-- Settings Icon -->
+            </button>
+        </div>
+    </div>
+
+    <!-- Sidebar Toggle Button -->
+    <button class="sidebar-toggle" id="sidebarToggle">
+        <div class="hamburger"></div>
+    </button>
+    <header>
+        <div class="container">
+            <h1>Support - AAU Bank</h1>
+            <p>How can we help you today?</p>
+        </div>
+    </header>
+
+    <section class="faq-section">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq">
+                <h4>How do I reset my password?</h4>
+                <p>To reset your password, go to the login page and click on "Forgot Password". Follow the instructions
+                    to set a new password.</p>
+            </div>
+            <div class="faq">
+                <h4>How do I transfer funds?</h4>
+                <p>You can transfer funds via the "Transfer" section in your account dashboard. Simply enter the
+                    recipient's details and the amount.</p>
+            </div>
+            <div class="faq">
+                <h4>What should I do if my card is lost or stolen?</h4>
+                <p>If your card is lost or stolen, please contact our support team immediately to block your card.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <form  class="support-form" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" placeholder="Your full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="Your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="issue">Describe your issue</label>
+                    <textarea id="issue" name="issue" rows="6" placeholder="Please describe your issue in detail"
+                        required></textarea>
+                </div>
+                <button type="submit" class="btn">Submit</button>
+            </form>
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 AAU Bank. All rights reserved.</p>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loader = document.querySelector('.loader');
+            setTimeout(function() {
+                loader.classList.add('hidden');
+            }, 2000); // Increased to 2 seconds for better visibility
+        });
+        document.addEventListener('DOMContentLoaded', function () {
+            const sidebar = document.getElementById('sidebar');
+            const sidebarToggle = document.getElementById('sidebarToggle');
+            let isSidebarOpen = false;
+        
+            sidebarToggle.addEventListener('click', () => {
+                sidebar.classList.toggle('hidden');
+                sidebar.classList.toggle('open');
+                isSidebarOpen = !isSidebarOpen;
+                toggleSidebarButtonVisibility();
+            });
+        
+        
+            document.addEventListener('click', (e) => {
+                if (
+                    isSidebarOpen &&
+                    !sidebar.contains(e.target) &&
+                    !sidebarToggle.contains(e.target)
+                ) {
+                    sidebar.classList.add('hidden');
+                    sidebar.classList.remove('open');
+                    isSidebarOpen = false;
+                    toggleSidebarButtonVisibility();
+                }
+            });
+        
+            function toggleSidebarButtonVisibility() {
+                if (isSidebarOpen) {
+                    sidebarToggle.classList.add('hidden');
+                } else {
+                    sidebarToggle.classList.remove('hidden');
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
