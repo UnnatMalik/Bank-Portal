@@ -45,6 +45,8 @@ This technologies used in creation of the bank portal are as follow :
   <img width="12" />
   <img src="https://skillicons.dev/icons?i=django" height="40" alt="django logo"  />
   <img width="12" />
+  <img src="https://avatars.githubusercontent.com/u/215947?s=200&v=4" height="40" alt="Matplotlib"/>
+  <img width="12" />
   <img src="https://skillicons.dev/icons?i=html" height="40" alt="html5 logo"  />
   <img width="12" />
   <img src="https://skillicons.dev/icons?i=css" height="40" alt="css3 logo"  />
@@ -52,8 +54,6 @@ This technologies used in creation of the bank portal are as follow :
   <img src="https://skillicons.dev/icons?i=bootstrap" height="40" alt="bootstrap logo"  />
   <img width="12" />
   <img src="https://skillicons.dev/icons?i=js" height="40" alt="javascript logo"  />
-  <img width="12" />
-  <img src="https://avatars.githubusercontent.com/u/215947?s=200&v=4" height="40" alt="Matplotlib"/>
 </div>
 
 ###
