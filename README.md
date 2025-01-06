@@ -16,7 +16,8 @@ This is a project about a Bank Portal
 </div>
 
 ## About The Project
-![image](https://github.com/user-attachments/assets/185b3dd5-b00f-4752-af9d-9522061d5d83)
+
+![Screenshot 2025-01-03 171752](https://github.com/user-attachments/assets/4e19e795-1df4-433d-9454-319b73d27994)
 
 
 
