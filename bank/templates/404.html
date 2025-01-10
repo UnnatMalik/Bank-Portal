@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 | CHD-BANK</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="https://clipartcraft.com/images/bank-logo-icon-9.png" type="image/png">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #4a90e2, #7b5dfa);
+            color: #ffffff;
+            overflow: hidden;
+        }
+        .error-container {
+            text-align: center;
+            color: #ffffff;
+        }
+        .error-code {
+            font-size: 120px;
+            font-weight: bold;
+            position: relative;
+            display: inline-block;
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+        }
+        .error-code:after {
+            content: "404";
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #004080;
+            animation: glitch 1.5s infinite;
+        }
+        @keyframes glitch {
+            0% {
+                clip-path: inset(0 0 90% 0);
+                transform: translate(-3px, -3px);
+            }
+            20% {
+                clip-path: inset(10% 0 70% 0);
+                transform: translate(3px, 3px);
+            }
+            40% {
+                clip-path: inset(40% 0 50% 0);
+                transform: translate(-3px, 3px);
+            }
+            60% {
+                clip-path: inset(20% 0 80% 0);
+                transform: translate(3px, -3px);
+            }
+            80% {
+                clip-path: inset(30% 0 60% 0);
+                transform: translate(-3px, -3px);
+            }
+            100% {
+                clip-path: inset(0 0 90% 0);
+                transform: translate(0);
+            }
+        }
+        .error-message {
+            font-size: 20px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+        .btn-home {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #ffffff;
+            background-color: #004080;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .btn-home:hover {
+            background-color: #003366;
+            transform: scale(1.1);
+        }
+        .floating-icon {
+            font-size: 100px;
+            position: absolute;
+            animation: float 3s ease-in-out infinite;
+            color: rgba(255, 255, 255, 0.3);
+        }
+        .floating-icon:nth-child(1) {
+            top: 10%;
+            left: 20%;
+            animation-delay: 0s;
+        }
+        .floating-icon:nth-child(2) {
+            top: 50%;
+            left: 10%;
+            animation-delay: 1s;
+        }
+        .floating-icon:nth-child(3) {
+            top: 70%;
+            left: 80%;
+            animation-delay: 2s;
+        }
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-icon">💸</div>
+    <div class="floating-icon">🏦</div>
+    <div class="floating-icon">💳</div>
+    <div class="error-container">
+        <h1 class="error-code">404</h1>
+        <p class="error-message">Oops! The page you're looking for is out of reach.</p>
+        <p>Don't worry, let’s get you back on track!</p>
+        <a href="/" class="btn-home">Return to Home</a>
+    </div>
+</body>
+</html>

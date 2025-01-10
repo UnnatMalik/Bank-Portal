@@ -5,6 +5,8 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 
 # User Model
+# This class defines a model for user registration with various fields such as phone number, account
+# number, email, gender, account type, balance, address, image, PAN, Aadhaar, and date of birth.
 class User_reg(models.Model):
 
     user = models.OneToOneField(User,on_delete=models.CASCADE)
@@ -25,6 +27,8 @@ class User_reg(models.Model):
         return self.user.username
 
 # Transaction Model    
+# This Python class defines a model for transactions with fields like user, transaction type,
+# timestamp, amount, about, recipient, and recipient number.
 class Transactions(models.Model):
     TRANSACTION_TYPES = [
         ('DEPOSIT', 'Deposit'),
@@ -44,6 +48,7 @@ class Transactions(models.Model):
         return self.user.user.username
 
 # Support Model    
+# This Python class defines a model called Supports with fields for name, email, and issue.
 class Supports(models.Model):
 
     name = models.CharField(max_length=20,default="")

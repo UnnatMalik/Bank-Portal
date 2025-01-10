@@ -80,19 +80,18 @@
             overflow: hidden;
         }
 
-            .hero::before {
-                content: "";
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-image: url('https://cdn-icons-png.flaticon.com/512/4324/4324181.png'); /* Updated Rupee symbol background */
-                background-size: 100px 100px; /* Adjust size of each symbol */
-                background-repeat: repeat; /* Repeat image multiple times */
-                opacity: 0.1;
-                z-index: 1;
-            }         
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: 100px 100px;
+            background-repeat: repeat;
+            opacity: 0.1;
+            z-index: 1;
+        }         
 
         .hero h2 {
             font-size: 48px;
@@ -222,6 +221,77 @@
             opacity: 0;
             visibility: hidden;
         }
+
+        .floating-icon {
+            font-size: 80px;
+            position: absolute;
+            color: rgba(255, 255, 255, 0.3);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .floating-icon:nth-child(1) {
+            top: 5%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .floating-icon:nth-child(2) {
+            top: 5%;
+            right: 5%;
+            animation-delay: 1s;
+        }
+
+        .floating-icon:nth-child(3) {
+            bottom: 5%;
+            left: 5%;
+            animation-delay: 2s;
+        }
+
+        .floating-icon:nth-child(4) {
+            bottom: 5%;
+            right: 5%;
+            animation-delay: 1.5s;
+        }
+
+        .floating-icon:nth-child(5) {
+            top: 10%;
+            left: 40%;
+            animation-delay: 1.2s;
+        }
+
+        .floating-icon:nth-child(6) {
+            bottom: 50%;
+            right: 10%;
+            animation-delay: 0.8s;
+        }
+
+        .floating-icon:nth-child(7) {
+            top: 50%;
+            left: 50%;
+            animation-delay: 2.5s;
+        }
+
+        .floating-icon:nth-child(8) {
+            bottom: 10%;
+            left: 70%;
+            animation-delay: 2.5s;
+        }
+
+        .floating-icon img {
+            height: 80px;
+            width: 80px;
+            opacity: 0.5;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -248,6 +318,15 @@
 
     <section class="hero">
         <div class="container">
+            <div class="floating-icon"><img src="https://cdn-icons-png.flaticon.com/512/10535/10535976.png" alt="Rupee Icon"></div>
+            <div class="floating-icon"><img src="https://clipartcraft.com/images/bank-logo-icon-9.png" alt="Bank Logo"></div>
+            <div class="floating-icon"><img src="https://cdn-icons-png.flaticon.com/512/10040/10040507.png" alt="Credit Card Icon"></div>
+            <div class="floating-icon">₹</div>
+            <div class="floating-icon"><img src="https://cdn-icons-png.flaticon.com/512/845/845828.png" alt="Profits Icon"></div>
+            <div class="floating-icon"><img src="https://cdn-icons-png.flaticon.com/512/11436/11436287.png" alt="Investment Icon"></div>
+            <div class="floating-icon"><img src="https://cdn-icons-png.flaticon.com/512/2448/2448368.png" alt="Rupee Icon"></div>
+            <div class="floating-icon"><img src="https://cdn-icons-png.flaticon.com/512/16195/16195278.png" alt="Money Currency Icon"></div>
+            <div class="floating-icon"><img src="https://cdn-icons-png.flaticon.com/512/8385/8385947.png" alt="Transaction Icon"></div>
             <h2>Welcome to CHD Banking</h2>
             <p>Manage your accounts, make transfers, and track transactions with ease.</p>
             {% if user.is_authenticated %}
