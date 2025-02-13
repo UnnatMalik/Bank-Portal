@@ -4,14 +4,19 @@ from io import BytesIO
 import requests
 import base64
 import matplotlib
+
+from BankPortal import settings
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render , redirect
 from .models import User_reg , Transactions , Supports
-from django.contrib.auth import login , logout , authenticate 
+from django.contrib.auth import login , logout , authenticate
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.core.mail import BadHeaderError, send_mail, EmailMessage
 from reportlab.lib.pagesizes import letter
 from reportlab.lib import colors
 from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer, Image
@@ -19,6 +24,8 @@ from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfbase import pdfmetrics
 from datetime import datetime
+import json
+import google.generativeai as genai 
 
 # homepage 
 def homepage(request):
@@ -109,6 +116,29 @@ def support(request):
         issue = request.POST['issue']
         support = Supports.objects.create(name=Name,email=email,issue=issue)
         support.save()
+        if Name and email and issue :
+            genai.configure(api_key="AIzaSyC0lrU5hWnYrV6tiaVzU48-2lHx6D1oGyI")
+            model = genai.GenerativeModel(
+                "gemini-1.5-flash", 
+                system_instruction=f"""
+                You are a Customer Service agent at CHD-BANK. 
+                Reply to {Name}'s issue in a **polite and professional manner**. 
+                Format your response as a **HTML email** with a branded CHD-BANK template.
+                this is bank logo https://clipartcraft.com/images/bank-logo-icon-9.png .
+                this is the customer care number 9990001119.
+                Note : just generate the HTML response and send it to the customer and don't generate anything else in the response .
+                """
+                )
+            reply = model.generate_content(issue)
+            try :
+                email_message = EmailMessage(subject="Support Request",body=reply.text,from_email=settings.EMAIL_HOST_USER,to=[email,])
+                email_message.content_subtype = "html"  # Set email format to HTML
+                email_message.send()
+                messages.success(request,"Support request submitted successfully")
+            except BadHeaderError:
+                messages.error(request,"Invalid Header")
+                return redirect("support page")
+
     return render(request,'./support.html')
 
 # Transaction page
@@ -342,6 +372,7 @@ def dashboard(request):
         return render(request,"./dashboard.html",context)
 
 # Deposit page
+@login_required(login_url="login page")
 def deposit(request):
     '''The `deposit` function processes a POST request to add a specified amount to a user's account
     balance and create a deposit transaction record.
@@ -376,6 +407,7 @@ def deposit(request):
     return render(request,"./deposit.html")
 
 # Withdrawal page
+@login_required(login_url="login page")
 def withdrawal(request):
     """
     The `withdrawal` function in Python processes a withdrawal request, checks if the user has
@@ -399,6 +431,7 @@ def withdrawal(request):
         amount = decimal.Decimal(request.POST["withdrawal-amount"])
         account = request.POST["account-number"]
         user = User_reg.objects.get(account_number = account)
+        discription = request.POST["transaction-description"]
 
         if user.balance < amount :
             messages.error(request,"Balance Low")
@@ -408,12 +441,13 @@ def withdrawal(request):
             user.balance -= amount
             user.save()
 
-        Transactions.objects.create(user=user,transaction_type="WITHDRAW",amount=amount,receiptent_no="Self",receiptent=amount,about="WithDraw")
+        Transactions.objects.create(user=user,transaction_type="WITHDRAW",amount=amount,receiptent_no="Self",receiptent=amount,about=discription)
         messages.success(request,f"Withdrawal of {amount} is Successful !!")
         return redirect("Dashboard")
     return render(request,"./Withdrawal.html")
 
 # Transfer page
+@login_required(login_url="login page")
 def Transfer(request):
     '''The function `Transfer` handles transferring funds between user accounts, updating balances, and
     creating transaction records.
@@ -444,11 +478,11 @@ def Transfer(request):
             receiptent_transfer = User_reg.objects.get(account_number=receiptent_ac)
         except User_reg.DoesNotExist:
             messages.error(request,"User does not exist")
-            return redirect("Transfer")
+            return redirect("Transfers")
         
         if amount > user.balance:
             messages.error(request,"Balance insufficient")
-            return redirect("Transfer")
+            return redirect("Transfers")
         
         else:
             user.balance -= amount
@@ -598,3 +632,26 @@ def handler404(request,exception):
     
     '''
     return render(request,'./404.html')
+
+@csrf_exempt
+def Chatbot(request):
+    services = [
+        "Transfer Funds",
+        "Deposit Funds",
+        "Withdraw Funds",
+        "Support",
+        "Transaction history download"
+    ]
+    context = {
+        "services": services,
+        "account openning": "name,phone,email,account_number,account_type,address,pan,aadhaar,dob",
+        "Account types" : ["Savings","Current","Business"]
+    }
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        user_message = data['message']
+        print(user_message)
+        genai.configure(api_key="AIzaSyDFrEnnRhQjk6ac14NlmTy-Za64K9njC8M")
+        model = genai.GenerativeModel("gemini-1.5-flash", system_instruction=f"You are a Bank Manager at CHD-BANK, and you are talking to a customer who wants to know about the bank and its services. these are some things you can keep in mind {context}")
+        reply = model.generate_content(user_message)
+        return JsonResponse({'reply': reply.text})

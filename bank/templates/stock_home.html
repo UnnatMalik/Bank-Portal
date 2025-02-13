@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StockInsight</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/shadcn-ui/dist/shadcn.min.css">
+    <link rel="icon" href="https://clipartcraft.com/images/bank-logo-icon-9.png" type="image/png">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #3b82f6, #9333ea);
+            color: white;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            background: rgba(0, 0, 0, 0.2);
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+        .nav-links a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: white;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #ddd;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .hero-image {
+            width: 80%; /* Increased width */
+            max-width: 800px; /* Added max-width */
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 10px; /* Slightly larger border-radius */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Added shadow */
+            margin-bottom: 20px; /* Added margin */
+        }
+        .features {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .feature img {
+            width: 120px;
+            height: 120px;
+        }
+        button {
+            background: white;
+            color: #3b82f6;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #ddd;
+        }
+        footer { /* Style for the footer */
+            background: rgba(0, 0, 0, 0.2); /* Same background as nav */
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px; /* Add some space above the footer */
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <img src="https://clipartcraft.com/images/bank-logo-icon-9.png" alt="Bank Logo">
+        </div>
+        <div class="nav-links">
+            <a href="{% url 'Homepage' %}">Home</a>
+            <a href="{% url 'stock_watchlist' %}">WatchList</a>
+            <a href="#portfolio">Portfolio</a>
+            <a href="#dashboard">Dashboard</a>
+        </div>
+    </nav>
+    <div class="container">
+        <img src="https://www.fisdom.com/wp-content/uploads/2021/02/800x600-14.jpg" alt="Stock Market" class="hero-image">
+        <h1>Welcome to StockInsight</h1>
+        <p>Track stocks, manage your portfolio, and make informed investments.</p>
+        <div class="features">
+            <div class="feature">
+                <img src="stocks-icon.png" alt="Stocks">
+                <p>Real-time Stock Updates</p>
+            </div>
+            <div class="feature">
+                <img src="portfolio-icon.png" alt="Portfolio">
+                <p>Smart Portfolio Management</p>
+            </div>
+            <div class="feature">
+                <img src="analytics-icon.png" alt="Analytics">
+                <p>Advanced Analytics & Insights</p>
+            </div>
+        </div>
+        <button id="startBtn">Get Started</button>
+    
+    </div>
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 CHD Bank. All Rights Reserved.</p>
+        </div>
+    </footer>
+    <script>
+        gsap.from("h1", { duration: 1, y: -50, opacity: 0, ease: "power2.out" });
+        gsap.from("p", { duration: 1.5, y: -30, opacity: 0, ease: "power2.out", delay: 0.3 });
+        gsap.from("button", { duration: 2, scale: 0.5, opacity: 0, ease: "elastic.out", delay: 0.6 });
+        gsap.from(".feature", { duration: 1, opacity: 0, y: 30, stagger: 0.3, ease: "power2.out" });
+    </script>
+</body>
+</html>

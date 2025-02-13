@@ -53,23 +53,27 @@
         }
 
         .input-group {
-            margin-bottom: 15px;
-            text-align: left;
+            margin-bottom: 20px;
         }
 
         .input-group label {
             display: block;
-            margin-bottom: 5px;
-            font-size: 14px;
-            color: #333;
+            margin-bottom: 8px;
+            font-weight: bold;
         }
 
-        .input-group input {
+        .input-group input,
+        .input-group textarea {
             width: 100%;
             padding: 10px;
             border: 1px solid #ccc;
-            border-radius: 8px;
+            border-radius: 4px;
             font-size: 16px;
+        }
+
+        .input-group textarea {
+            resize: vertical;
+            height: 80px;
         }
 
         .actions {
@@ -150,8 +154,12 @@
                 <input type="text" id="account-number" name="account-number" required>
             </div>
             <div class="input-group">
-                <label for="deposit-amount">WithDrawal Amount</label>
-                <input type="number" id="deposit-amount" name="deposit-amount" required>
+                <label for="withdrawal-amount">WithDrawal Amount</label>
+                <input type="number" id="Withdrawal-amount" name="withdrawal-amount" required>
+            </div>
+            <div class="input-group">
+                <label for="transaction-description">Transaction Description</label>
+                <textarea id="transaction-description" name="transaction-description" placeholder="Enter details about the transaction"></textarea>
             </div>
             <div class="actions">
                 <button type="submit">Make Withdrawal</button>
