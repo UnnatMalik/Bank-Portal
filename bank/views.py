@@ -117,7 +117,7 @@ def support(request):
         support = Supports.objects.create(name=Name,email=email,issue=issue)
         support.save()
         if Name and email and issue :
-            genai.configure(api_key="AIzaSyC0lrU5hWnYrV6tiaVzU48-2lHx6D1oGyI")
+            genai.configure(api_key="YOUR API KEY")
             model = genai.GenerativeModel(
                 "gemini-1.5-flash", 
                 system_instruction=f"""
@@ -125,7 +125,7 @@ def support(request):
                 Reply to {Name}'s issue in a **polite and professional manner**. 
                 Format your response as a **HTML email** with a branded CHD-BANK template.
                 this is bank logo https://clipartcraft.com/images/bank-logo-icon-9.png .
-                this is the customer care number 9990001119.
+                this is the customer care number xxxxxxxxx.
                 Note : just generate the HTML response and send it to the customer and don't generate anything else in the response .
                 """
                 )
@@ -651,7 +651,7 @@ def Chatbot(request):
         data = json.loads(request.body)
         user_message = data['message']
         print(user_message)
-        genai.configure(api_key="AIzaSyDFrEnnRhQjk6ac14NlmTy-Za64K9njC8M")
+        genai.configure(api_key="YOUR API KEY")
         model = genai.GenerativeModel("gemini-1.5-flash", system_instruction=f"You are a Bank Manager at CHD-BANK, and you are talking to a customer who wants to know about the bank and its services. these are some things you can keep in mind {context}")
         reply = model.generate_content(user_message)
         return JsonResponse({'reply': reply.text})
