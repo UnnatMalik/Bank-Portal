@@ -28,7 +28,7 @@ for secure and user-friendly banking applications is growing as more financial i
 towards online services. This project uses HTML for structure, CSS for styling, and JavaScript
 for functionality to simulate real-world banking operations and Django for back-end services .
 
-# New Updates
+## New Updates
 
 🤖 Now the portal is Equipped with a Chat-Bot (Gemini 1.5 Flash). </br>
 📤 The portal Also has AI-Assistant to deal with the users queries via Mails.</br>
